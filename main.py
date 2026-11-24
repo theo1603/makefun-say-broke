@@ -15,9 +15,13 @@ ENTRY = (
 
 
 def main() -> None:
+    # Self-check the gate before writing: one line, 1-200 chars, not blank.
+    text = ENTRY.strip()
+    if not 1 <= len(text) <= 200 or "\n" in text:
+        raise ValueError(f"entry violates the gate: {len(text)} chars")
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
-        f.write(ENTRY)
+        f.write(text)
 
 
 if __name__ == "__main__":
